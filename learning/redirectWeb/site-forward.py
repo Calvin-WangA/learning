@@ -1,7 +1,7 @@
 '''
 Created on 2016年2月28日
 
-@author: Calvin Wang
+@author: Caspar Wang
 '''
 """
 ################################################################################
@@ -32,9 +32,9 @@ for file in siteFiles:
     if file.endswith('.html') or file.endswith('.htm'):
         fwdName = os.path.join(uploadDir,file)
         print('Creating',filename,' as ',fwdName)
-        fileText = template.replace($server$,serverName)
-        fileText = fileText.replace($home$,homeDir)
-        fileText = fileText.replace($file$,file)
+        fileText = template.replace('$server$',serverName)
+        fileText = fileText.replace('$home$',homeDir)
+        fileText = fileText.replace('$file$',file)
         open(fwdName,'w').write(fileText)
         count += 1
         
