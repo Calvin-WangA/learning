@@ -16,7 +16,7 @@ class Demo(Frame):
         self.pack()
         self.tools()
         Label(self,text='Check demos').pack()
-        self.vars()
+        self.vars = []
         for key in demos:
             var = IntVar
             Checkbutton(self,
