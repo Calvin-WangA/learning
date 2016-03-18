@@ -12,8 +12,7 @@ Created on 2016年3月14日
 '''
 from tkinter import *
 from learning.GUI.chapter4.guimixin import GuiMixin
-import learning.GUI.chapter4.guimaker as guimaker
-
+impimport learning.GUI.chapter5 as guimaker
 class ShellGui(GuiMixin,guimaker.GuiMakerWindowMenu):
     def start(self):
         self.setMenuBar()

@@ -16,7 +16,7 @@ Windows as is; see PyPhoto later in Chapter 11 for a much more complete version;
 import sys, math
 from tkinter import *
 from PIL.ImageTk import PhotoImage
-from chapter2.view_thumbs import makeThumbs,ViewOne 
+from learning.GUI.chapter2.view_thumbs import makeThumbs,ViewOne 
 #makeThumbs, ViewOne
 
 def viewer(imgdir, kind=Toplevel, numcols=None, height=300,width=300):
