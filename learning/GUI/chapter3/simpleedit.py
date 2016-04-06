@@ -13,7 +13,7 @@ this is not robust!--see PyEdit for a feature superset;
 from tkinter import *
 from tkinter.simpledialog import askstring
 from tkinter.filedialog import asksaveasfilename
-from quitter import Quitter
+from learning.GUI.chapter2.quitter import Quitter
 from scrolledtext import ScrolledText
 
 class SimpleEditor(ScrolledText):

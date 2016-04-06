@@ -6,32 +6,36 @@ Created on 2016年3月18日
 @author: CasparWang
 '''
 from tkinter import *
-
+from learning.GUI.chapter5.operateFile import *
 class PyEdit(Frame):
     
+    text = Text(relief=SUNKEN)
+    text.insert(END, "HELLO CLIPBORD")
     menuBars =  [('file',[('new', quit),('open',quit)
                          ,('save', quit),('save as', quit)])
                  ,('edit',[('draw',quit),('event',[('click',quit)
                                                    ,('double click', quit)])])
                 ]
     
-    toolBars = [('cut',quit),('copy',quit),('paste',quit)]
-    
+    toolBars = [('cut',quit),('copy', lambda text: copyText(text)),('paste',quit)]
+        
     def __init__(self, parent=None):
+        
         Frame.__init__(self, parent);
         self.config(width=600, height=400)
         self.pack(expand=YES, fill=BOTH)
         self.makeMenuBars()
+        self.makeEditArea()
         self.makeToolBars()
-        self.makeWidgets()
+        
         
     def makeMenuBars(self):
-        rootMenu = Menu(self.master)
-        self.master.config(menu=rootMenu)
+        self.rootMenu = Menu(self.master)
+        self.master.config(menu=self.rootMenu)
         
         for (name, items) in self.menuBars:
-            menu = Menu(rootMenu)
-            rootMenu.add_cascade(label=name, menu=menu)
+            menu = Menu(self.rootMenu)
+            self.rootMenu.add_cascade(label=name, menu=menu)
             self.addMenuItems(menu, items)
     
     def addMenuItems(self,menu, items):
@@ -44,22 +48,23 @@ class PyEdit(Frame):
                 self.addMenuItems(subMenu,item[1])
                
     def makeToolBars(self):
-        toolbar = Frame(self)
+        self.master.toolbar = Frame(self.master)
         for (name, func) in self.toolBars:
-            button = Button(toolbar,text=name, command=func)
+            button = Button(self.master.toolbar,text=name, command=func)
             button.pack(side=LEFT)
-        toolbar.pack(side=BOTTOM, fill=X)
+        self.master.toolbar.pack(side=BOTTOM, fill=X)
             
-    def makeWidgets(self):
-        yscroll = Scrollbar(self)
-        xscroll = Scrollbar(self, orient='horizontal')
-        self.text = Text(self,relief=SUNKEN)
+    def makeEditArea(self):
+        yscroll = Scrollbar(self.master)
+        xscroll = Scrollbar(self.master, orient='horizontal')
+       
         self.text.config(yscrollcommand=yscroll.set)
         self.text.config(xscrollcommand=xscroll.set)
         yscroll.config(command=self.text.yview)
         xscroll.config(command=self.text.xview)
         yscroll.pack(side=RIGHT, fill=Y)
         xscroll.pack(side=BOTTOM, fill=X)
+        self.text.config(bg='pink')
         self.text.pack(side=TOP, expand=YES, fill=BOTH)
         
         
